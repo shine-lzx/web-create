@@ -1,6 +1,6 @@
 {
   "name": "web-create",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "前端项目脚手架",
   "repository": "https://github.com/shine-lzx/web-create.git",
   "main": "src/index.js",
