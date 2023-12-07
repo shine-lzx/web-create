@@ -12,8 +12,9 @@ Reflect.ownKeys(actions).forEach((action) => {
       if (action === '*') {
         console.warn(actions[action].description)
       } else {
-        const actionPath = `actions/${action}`
-        require(path.resolve(__dirname, actionPath))(...process.argv.slice(3))
+        require(path.resolve(__dirname, `actions/${action}`))(
+          ...process.argv.slice(3)
+        )
       }
     })
 })

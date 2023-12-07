@@ -5,6 +5,7 @@ const { installPluginsInquirer } = require('../inquirers')
 const { installPackages } = require('../utils/installPlugins')
 const initGit = require('../utils/initGit')
 const initHusky = require('../utils/initHusky')
+const displayRunInstructions = require('../utils/tip')
 
 class Creator {
   constructor(projectName) {
@@ -25,8 +26,9 @@ class Creator {
     const repoUrl = await Generator(template, this.projectName)
     const plugins = await this.choosePlugins()
     await this.installDependencies(plugins)
-    // await initHusky(plugins, this.projectName)
+    await initHusky(plugins, this.projectName)
     await initGit(this.projectName, repoUrl)
+    displayRunInstructions(this.projectName)
   }
 
   async choosePlugins() {
@@ -34,7 +36,6 @@ class Creator {
   }
 
   async installDependencies(plugins) {
-    // 如果用户未选择任何额外的插件，这块代码将会不执行，需要增加判断
     const spinner = ora('Installing dependencies...').start()
     try {
       await installPackages(plugins, this.projectName)

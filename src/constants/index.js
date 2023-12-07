@@ -7,12 +7,17 @@ const actions = {
   create: {
     alias: 'c',
     description: 'create a project',
-    examples: ['web-create <project-name>'],
+    examples: ['web-cli create <project-name>'],
   },
   config: {
     alias: 'conf',
     description: 'config project variable',
-    examples: ['web-create config set <key> <value>'],
+    examples: ['web-cli config set <key> <value>'],
+  },
+  clear: {
+    alias: 'cl',
+    description: 'clear the local project template',
+    examples: ['web-cli clear'],
   },
   '*': {
     alias: '',

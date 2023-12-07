@@ -61,14 +61,13 @@ async function installPackages(packages, projectDir) {
     })
   }
 
-  const installPromises = packages.map((packageName) => {
-    return installPackage(packageName, projectDir)
-      .then(() => {
-        log(chalk.green(`Successfully installed ${packageName}`))
-      })
-      .catch((err) => {
-        log(chalk.red(`Failed to install ${packageName}:`, err))
-      })
+  const installPromises = packages.map(async (packageName) => {
+    try {
+      await installPackage(packageName, projectDir)
+      log(chalk.green(`Successfully installed ${packageName}`))
+    } catch (err) {
+      log(chalk.red(`Failed to install ${packageName}:`, err))
+    }
   })
 
   return Promise.all(installPromises)

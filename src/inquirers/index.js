@@ -40,8 +40,21 @@ const installPluginsInquirer = async () => {
   return answers.plugins
 }
 
+const confirmCleanInquirer = async () => {
+  const { confirm } = await inquirer.prompt([
+    {
+      name: 'confirm',
+      type: 'confirm',
+      message: 'confirm clear all cache files?',
+    },
+  ])
+
+  return confirm
+}
+
 module.exports = {
   branchInquirer,
   repoInquirer,
   installPluginsInquirer,
+  confirmCleanInquirer,
 }

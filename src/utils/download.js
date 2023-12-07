@@ -68,13 +68,28 @@ const ensureDirExists = (dir) => {
   return true
 }
 
+const getLocalTemplatesDir = async (currentPorjectName) => {
+  const spinner = ora(`Checking local templates directory...`).start()
+  const filePath = templatesDir.replace(/\\/g, '/')
+  spinner.succeed('Local templates directory exists!')
+  return `${filePath}${currentPorjectName}`
+}
+
 module.exports = async () => {
   try {
     const repos = await getReposList()
     const repo = await repoInquirer(repos.map((item) => item.name)),
       branches = await getBranchesList(repo),
       branch = await branchInquirer(branches)
-    return downloadFromGitHub(githuburl('templates'), repo, branch)
+
+    const currentPorjectName = `${repo}-${branch}`
+    const dir = fs.readdirSync(templatesDir)
+
+    if (dir.length > 0 && dir.includes(currentPorjectName)) {
+      return getLocalTemplatesDir(currentPorjectName)
+    } else {
+      return downloadFromGitHub(githuburl('templates'), repo, branch)
+    }
   } catch (error) {
     throw error
   }
