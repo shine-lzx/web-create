@@ -1,0 +1,42 @@
+{
+  "name": "web-create",
+  "version": "1.0.1",
+  "description": "前端项目脚手架",
+  "repository": "https://github.com/shine-lzx/web-create.git",
+  "main": "src/index.js",
+  "bin": {
+    "web-cli": "bin/web-cli.js"
+  },
+  "scripts": {
+    "build:cjs": "node build.js"
+  },
+  "author": "shine-lzx",
+  "license": "ISC",
+  "keywords": [
+    "web",
+    "cli",
+    "create",
+    "project"
+  ],
+  "dependencies": {
+    "axios": "^1.6.2",
+    "chalk": "^4.1.2",
+    "commander": "^11.1.0",
+    "consolidate": "^0.16.0",
+    "download": "^8.0.0",
+    "ejs": "^3.1.6",
+    "esbuild": "^0.19.8",
+    "execa": "^5.1.1",
+    "inquirer": "^8.0.0",
+    "listr": "^0.14.3",
+    "lodash": "^4.17.21",
+    "metalsmith": "^2.6.2",
+    "ncp": "^2.0.0",
+    "ora": "^4.1.1",
+    "unzipper": "^0.10.14"
+  },
+  "devDependencies": {
+    "eslint": "^8.54.0",
+    "rimraf": "^5.0.5"
+  }
+}
