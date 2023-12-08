@@ -1,4 +1,5 @@
 const os = require('os')
+
 const { version } = require('../../package.json')
 
 const templatesDir = `${os.homedir()}/.web-cli-templates/`
@@ -18,6 +19,11 @@ const actions = {
     alias: 'cl',
     description: 'clear the local project template',
     examples: ['web-cli clear'],
+  },
+  update: {
+    alias: 'u',
+    description: 'update cli',
+    examples: ['web-cli update'],
   },
   '*': {
     alias: '',

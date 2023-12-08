@@ -30,8 +30,6 @@ const getBranchesList = async (repo) => {
 const downloadFromGitHub = async (url, repo, branch) => {
   const spinner = ora(`Downloading……`).start()
   try {
-    ensureDirExists(templatesDir)
-
     const downloadUrl = `${url}/${repo}/archive/${branch}.zip`
 
     const fileName = `${repo}.zip`
@@ -68,11 +66,11 @@ const ensureDirExists = (dir) => {
   return true
 }
 
-const getLocalTemplatesDir = async (currentPorjectName) => {
+const getLocalTemplatesDir = async (currentProjectName) => {
   const spinner = ora(`Checking local templates directory...`).start()
   const filePath = templatesDir.replace(/\\/g, '/')
   spinner.succeed('Local templates directory exists!')
-  return `${filePath}${currentPorjectName}`
+  return `${filePath}${currentProjectName}`
 }
 
 module.exports = async () => {
@@ -82,11 +80,12 @@ module.exports = async () => {
       branches = await getBranchesList(repo),
       branch = await branchInquirer(branches)
 
-    const currentPorjectName = `${repo}-${branch}`
+    const currentProjectName = `${repo}-${branch}`
+    ensureDirExists(templatesDir)
     const dir = fs.readdirSync(templatesDir)
 
-    if (dir.length > 0 && dir.includes(currentPorjectName)) {
-      return getLocalTemplatesDir(currentPorjectName)
+    if (dir.length > 0 && dir.includes(currentProjectName)) {
+      return getLocalTemplatesDir(currentProjectName)
     } else {
       return downloadFromGitHub(githuburl('templates'), repo, branch)
     }

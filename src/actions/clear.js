@@ -3,12 +3,13 @@ const fs = require('fs')
 const ora = require('ora')
 const { confirmCleanInquirer } = require('../inquirers')
 const chalk = require('chalk')
+const rimraf = require('rimraf')
 const log = console.log
 
 module.exports = async () => {
   const spinner = ora('cleaning templates')
   if (!fs.existsSync(templatesDir)) {
-    spinner.succeed('no templates directory found')
+    spinner.fail('no templates directory found')
     return
   }
 
@@ -19,9 +20,7 @@ module.exports = async () => {
       const dir = fs.readdirSync(formatPath)
       spinner.start()
       if (dir.length > 0) {
-        dir.forEach((item) => {
-          fs.unlinkSync(`${formatPath}/${item}`)
-        })
+        rimraf.sync(formatPath)
         spinner.succeed('cleaned templates successfully')
       } else {
         spinner.succeed('cleaning templates')
