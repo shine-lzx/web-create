@@ -8,7 +8,7 @@
     "web-cli": "bin/web-cli.js"
   },
   "scripts": {
-    "build:cjs": "node build.js"
+    "build": "webpack"
   },
   "author": "shine-lzx",
   "license": "ISC",
@@ -19,24 +19,28 @@
     "project"
   ],
   "dependencies": {
+    "@octokit/rest": "^20.0.2",
     "axios": "^1.6.2",
     "chalk": "^4.1.2",
     "commander": "^11.1.0",
     "consolidate": "^0.16.0",
     "download": "^8.0.0",
     "ejs": "^3.1.6",
-    "esbuild": "^0.19.8",
     "execa": "^5.1.1",
     "inquirer": "^8.0.0",
     "listr": "^0.14.3",
     "lodash": "^4.17.21",
     "metalsmith": "^2.6.2",
     "ncp": "^2.0.0",
+    "node-fetch": "^2.7.0",
     "ora": "^4.1.1",
-    "unzipper": "^0.10.14"
+    "simple-git": "^3.21.0"
   },
   "devDependencies": {
+    "copy-webpack-plugin": "^11.0.0",
     "eslint": "^8.54.0",
-    "rimraf": "^5.0.5"
+    "rimraf": "^5.0.5",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
   }
 }

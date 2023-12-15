@@ -4,6 +4,7 @@ const { repoInquirer, branchInquirer } = require('../inquirers/index')
 const { templatesDir, githuburl } = require('../constants')
 const request = require('./request')
 const download = require('download')
+const { formatPath } = require('.')
 
 const getReposList = async () => {
   try {
@@ -34,7 +35,7 @@ const downloadFromGitHub = async (url, repo, branch) => {
 
     const fileName = `${repo}.zip`
 
-    const filePath = templatesDir.replace(/\\/g, '/')
+    const filePath = formatPath(templatesDir)
 
     const downloadOptions = {
       extract: true,
@@ -68,7 +69,7 @@ const ensureDirExists = (dir) => {
 
 const getLocalTemplatesDir = async (currentProjectName) => {
   const spinner = ora(`Checking local templates directory...`).start()
-  const filePath = templatesDir.replace(/\\/g, '/')
+  const filePath = formatPath(templatesDir)
   spinner.succeed('Local templates directory exists!')
   return `${filePath}${currentProjectName}`
 }

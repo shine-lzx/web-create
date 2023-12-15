@@ -94,4 +94,5 @@ module.exports = {
   actions,
   githuburl,
   plugins,
+  authToken: '', // 授权码
 }

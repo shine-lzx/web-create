@@ -5,7 +5,7 @@ const { installPluginsInquirer } = require('../inquirers')
 const { installPackages } = require('../utils/installPlugins')
 const initGit = require('../utils/initGit')
 const initHusky = require('../utils/initHusky')
-const displayRunInstructions = require('../utils/tip')
+const displayRunInstructions = require('../utils/displayRunInstructions')
 
 class Creator {
   constructor(projectName) {
